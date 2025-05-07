@@ -1,0 +1,11 @@
+update-basic-plan-features.sql""-- Update the Basic plan to include estimates and receipts features
+UPDATE subscription_plans
+SET features = features || 
+ jsonb_build_object(
+   'estimates', 'Unlimited',
+   'receipts', 'Unlimited'
+ )
+WHERE name = 'Basic';
+
+-- Verify the update
+SELECT name, features FROM subscription_plans WHERE name = 'Basic';
