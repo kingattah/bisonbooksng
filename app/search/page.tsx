@@ -1,5 +1,4 @@
 import { Suspense } from "react"
-import { cookies } from "next/headers"
 import { createClient } from "@/lib/supabase/server"
 import { SearchBar } from "@/components/search/search-bar"
 
@@ -15,7 +14,6 @@ interface SearchResult {
 }
 
 async function getSearchResults(query: string, type: string) {
-  const cookieStore = cookies()
   const supabase = createClient()
 
   const { data: { user } } = await supabase.auth.getUser()
